@@ -318,6 +318,54 @@ if game.Players.LocalPlayer.Backpack:FindFirstChild("Stunstick") then
             end
   	end    
 })
+local l__mouse__1 = game.Players.LocalPlayer:GetMouse();
+WeaponsTab:AddButton({
+	Name = "Mod Stunstick",
+	Callback = function()
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Stunstick") then
+            OrionLib:MakeNotification({
+                Name = "Downtown RP+",
+                Content = "Spoofing magnitude values...",
+                Image = "rbxassetid://4483345998",
+                Time = 2
+            })
+            wait(2)
+            OrionLib:MakeNotification({
+                Name = "Downtown RP+",
+                Content = "Removing team check...",
+                Image = "rbxassetid://4483345998",
+                Time = 1
+            })
+            wait(1)
+            OrionLib:MakeNotification({
+                Name = "Downtown RP+",
+                Content = "Your stunstick has been modded",
+                Image = "rbxassetid://4483345998",
+                Time = 1
+            })
+        game.Players.LocalPlayer.Backpack:WaitForChild("Stunstick").Activated:Connect(function()
+            if l__mouse__1.Target.Parent:FindFirstChild("Humanoid") ~= nil then
+                game.Players.LocalPlayer.Backpack:WaitForChild("Stunstick").client_to_server:FireServer(l__mouse__1.Target);
+            end;
+        end);
+    else
+        OrionLib:MakeNotification({
+            Name = "Downtown RP+",
+            Content = "Please ensure you have a stunstick in your inventory",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+  	end    
+})
+
+OrionLib:MakeNotification({
+	Name = "Downtown RP+",
+	Content = "Downtown RP+ has been successfully loaded!",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
 
 while true do
 if SpamStun == true and game.Players.LocalPlayer.Backpack:FindFirstChild("Stunstick") then
@@ -330,11 +378,5 @@ end
 
 
 --------------------------------------------------------------
-OrionLib:MakeNotification({
-	Name = "Downtown RP+",
-	Content = "Downtown RP+ has been successfully loaded!",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
 
 OrionLib:Init()
