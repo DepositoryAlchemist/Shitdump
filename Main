@@ -1,1 +1,340 @@
-print("Helloooo")
+local Discord_ID_Creator = "Qxshio#2702"
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Downtown RP+", HidePremium = false, SaveConfig = true, ConfigFolder = "DowntownRP+", IntroText = "Downtown RP+ - By Qxshio#2702"})
+
+local HomeTab = Window:MakeTab({
+	Name = "Home",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local PlayerTab = Window:MakeTab({
+	Name = "Player",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local WorldTab = Window:MakeTab({
+	Name = "World",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local WeaponsTab = Window:MakeTab({
+	Name = "Weapons",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+HomeTab:AddLabel("Thank you for using my script.")
+
+HomeTab:AddButton({
+	Name = "Creator's Discord",
+	Callback = function()
+      		if setclipboard then
+                setclipboard(Discord_ID_Creator)
+                OrionLib:MakeNotification({
+                    Name = "Downtown RP+",
+                    Content = "Copied creator's Discord tag!",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+            else
+                OrionLib:MakeNotification({
+                    Name = "Downtown RP+",
+                    Content = "Feature is not available with your exectuor!",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+            end
+  	end    
+})
+WorldTab:AddButton({
+	Name = "Remove Robine-Only Doors",
+	Callback = function()
+        for l,p in pairs(game:GetService("Workspace")["Robine Doors"]:GetChildren()) do
+            if p then
+            p:Destroy()
+            end
+          end
+                OrionLib:MakeNotification({
+                    Name = "Downtown RP+",
+                    Content = "Removed all Robine associated doors!",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+  	end    
+})
+PlayerTab:AddButton({
+	Name = "Become Citizen",
+	Callback = function()    
+        if game.Players.LocalPlayer.TeamColor == BrickColor.new("Bright blue") then
+            for i,v in pairs(game:GetService("Workspace").Escapes:GetChildren()) do
+if v:IsA("Model") and v:FindFirstChild("TouchPart") then
+if v:FindFirstChild("TouchPart"):FindFirstChild("TouchInterest") then
+if firetouchinterest then
+firetouchinterest(v:FindFirstChild("TouchPart"), game.Players.LocalPlayer.Character:WaitForChild("Head"), 0)
+else
+    OrionLib:MakeNotification({
+        Name = "Downtown RP+",
+        Content = "Your executor does not support this",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+end
+end
+            end
+        else
+            OrionLib:MakeNotification({
+                Name = "Downtown RP+",
+                Content = "You may only do this on the Immigrant team",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        end
+  	end    
+})
+PlayerTab:AddTextbox({
+	Name = "Kill Player",
+	TextDisappear = true,
+	Callback = function(Value)
+		if game.Players:FindFirstChild(Value) then
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Stunstick") then
+                OrionLib:MakeNotification({
+                    Name = "Downtown RP+",
+                    Content = "Process started.. This may take a while due to forcefields",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+             repeat wait() game.Players.LocalPlayer.Backpack.Stunstick.client_to_server:FireServer(game.Players:FindFirstChild(Value).Character:WaitForChild("Torso")) until game.Players:FindFirstChild(Value).Character:WaitForChild("Humanoid").Health == 0
+                OrionLib:MakeNotification({
+                    Name = "Downtown RP+",
+                    Content = "Player has been killed",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+            else
+                OrionLib:MakeNotification({
+                    Name = "Downtown RP+",
+                    Content = "Please ensure you are on The Robine team",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+            end
+        else
+            OrionLib:MakeNotification({
+                Name = "Downtown RP+",
+                Content = "Player not found",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        end
+	end	  
+})
+
+PlayerTab:AddDropdown({
+	Name = "Quick Kill",
+	Options = {"Everyone", "Mayor", "Rosistance"},
+	Callback = function(Value)
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Stunstick") then
+            OrionLib:MakeNotification({
+                Name = "Downtown RP+",
+                Content = "Process started.. This may take a while due to forcefields",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+		if Value == "Everyone" then
+for i,v in pairs(game.Players:GetChildren()) do
+    if v.Name ~= game.Players.LocalPlayer.Name then
+    repeat wait() game.Players.LocalPlayer.Backpack.Stunstick.client_to_server:FireServer(v.Character:WaitForChild("Torso")) until v.Character:WaitForChild("Humanoid").Health == 0
+    OrionLib:MakeNotification({
+        Name = "Downtown RP+",
+        Content = v.Name.." has been killed",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+end
+elseif Value == "Mayor" then
+    for i,v in pairs(game.Players:GetChildren()) do
+        if v.TeamColor == BrickColor.new("Really black") then
+    repeat wait() game.Players.LocalPlayer.Backpack.Stunstick.client_to_server:FireServer(v.Character:WaitForChild("Torso")) until v.Character:WaitForChild("Humanoid").Health == 0
+    OrionLib:MakeNotification({
+        Name = "Downtown RP+",
+        Content = v.Name.." has been killed",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+end
+
+elseif Value == "Rosistance" then
+for i,v in pairs(game.Players:GetChildren()) do
+    if v.TeamColor == BrickColor.new("Br. yellowish orange") then
+repeat wait() game.Players.LocalPlayer.Backpack.Stunstick.client_to_server:FireServer(v.Character:WaitForChild("Torso")) until v.Character:WaitForChild("Humanoid").Health == 0
+OrionLib:MakeNotification({
+    Name = "Downtown RP+",
+    Content = v.Name.." has been killed",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
+end
+        end
+    elseif Value == "The Robine" then
+
+    end
+
+    else
+        OrionLib:MakeNotification({
+            Name = "Downtown RP+",
+            Content = "Please ensure you are on The Robine team",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+	end    
+})
+
+local tool = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
+local gunmodule1 = require(game:GetService("ReplicatedStorage").GunInfo)
+WeaponsTab:AddButton({
+	Name = "Mod Current Weapon",
+	Callback = function()
+
+if workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool") then
+
+local success,errormessage = pcall(function()
+gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].MaxAmmo = math.huge;
+gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].FireRate = 0.0000001
+gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].WeaponType = "Auto"
+gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].BulletSpread = 0
+end)
+
+if success then
+    OrionLib:MakeNotification({
+        Name = "Downtown RP+",
+        Content = "Bruteforcing 500,000 upvalue packet requests...",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+    wait(5)
+    gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].MaxAmmo = math.huge
+    gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].FireRate = 0.0000001
+    gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].WeaponType = "Auto"
+    gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].BulletSpread = 0
+    OrionLib:MakeNotification({
+        Name = "Downtown RP+",
+        Content = "Your "..workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name.." has been modded.",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+else
+    OrionLib:MakeNotification({
+        Name = "Downtown RP+",
+        Content = "Weapon not found in registry!",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+
+else
+    OrionLib:MakeNotification({
+        Name = "Downtown RP+",
+        Content = "Please equip a tool",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+  	end    
+})
+WeaponsTab:AddDropdown({
+	Name = "Bullet Color",
+	Options = {"White", "Black", "Pink", "Blue", "Red"},
+	Callback = function(Value)
+        if workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool") then
+print("found tool")
+        else
+            OrionLib:MakeNotification({
+                Name = "Downtown RP+",
+                Content = "Please equip a tool",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+            return
+        end
+		if Value == "White" then
+gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].BulletColor = BrickColor.new("White")
+        elseif Value == "Black" then
+            gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].BulletColor = BrickColor.new("Black")
+        elseif Value == "Pink" then
+            gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].BulletColor = BrickColor.new("Pink")
+        elseif Value == "Blue" then
+            gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].BulletColor = BrickColor.new("Really blue")
+        elseif Value == "Red" then
+            gunmodule1.Weaponry[workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChildWhichIsA("Tool").Name].BulletColor = BrickColor.new("Really red")
+            
+        end
+        OrionLib:MakeNotification({
+            Name = "Downtown RP+",
+            Content = "Bullet color set to: "..Value,
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+	end    
+})
+
+local SpamStun = false
+WeaponsTab:AddButton({
+	Name = "Toggle Spam-Stunstick",
+	Callback = function()
+      		if SpamStun == false then
+if game.Players.LocalPlayer.Backpack:FindFirstChild("Stunstick") then
+                SpamStun = true
+                OrionLib:MakeNotification({
+                    Name = "Downtown RP+",
+                    Content = "Spam-Stunstick has been enabled!",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+            else
+                OrionLib:MakeNotification({
+                    Name = "Downtown RP+",
+                    Content = "Please ensure you have a stunstick",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+            end
+            else
+                
+                SpamStun = false
+                OrionLib:MakeNotification({
+                    Name = "Downtown RP+",
+                    Content = "Spam-Stunstick has been disabled!",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+                wait()
+                game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):UnequipTools()
+            end
+  	end    
+})
+
+while true do
+if SpamStun == true and game.Players.LocalPlayer.Backpack:FindFirstChild("Stunstick") then
+    game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Stunstick"))
+wait(0.01)
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):UnequipTools()
+end
+    wait(0.01)
+end
+
+
+--------------------------------------------------------------
+OrionLib:MakeNotification({
+	Name = "Downtown RP+",
+	Content = "Downtown RP+ has been successfully loaded!",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+OrionLib:Init()
