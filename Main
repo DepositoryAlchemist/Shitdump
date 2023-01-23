@@ -24,6 +24,11 @@ local WeaponsTab = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+local ZombieTab = Window:MakeTab({
+	Name = "Zombie Options",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
 HomeTab:AddLabel("Thank you for using my script.")
 
@@ -318,6 +323,46 @@ if game.Players.LocalPlayer.Backpack:FindFirstChild("Stunstick") then
             end
   	end    
 })
+ZombieTab:AddButton({
+	Name = "Infect All",
+	Callback = function()
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Zombie Attack") then
+            for i,v in pairs(game.Players:GetChildren()) do
+                if v.Name ~= game.Players.LocalPlayer.Name then
+                game:GetService("Players").LocalPlayer.Backpack["Zombie Attack"]["client_to_server"]:FireServer(v.Character:WaitForChild("Torso"))
+            end
+            end
+            OrionLib:MakeNotification({
+                Name = "Downtown RP+",
+                Content = "You have infected everyone!",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+            else
+                OrionLib:MakeNotification({
+                    Name = "Downtown RP+",
+                    Content = "Please ensure you are a zombie",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+            end
+  	end    
+})
+PlayerTab:AddButton({
+	Name = "KoS All",
+	Callback = function()
+       for i,v in pairs(game.Players:GetChildren()) do
+game.ReplicatedStorage.eventStorage.createEvent:FireServer(v.Character)
+	end
+    OrionLib:MakeNotification({
+        Name = "Downtown RP+",
+        Content = "Everyone has been KoS'd",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+  	end    
+})
+
 
 OrionLib:MakeNotification({
 	Name = "Downtown RP+",
@@ -325,6 +370,7 @@ OrionLib:MakeNotification({
 	Image = "rbxassetid://4483345998",
 	Time = 5
 })
+
 
 while true do
 if SpamStun == true and game.Players.LocalPlayer.Backpack:FindFirstChild("Stunstick") then
